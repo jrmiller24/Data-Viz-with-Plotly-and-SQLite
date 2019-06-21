@@ -38,61 +38,28 @@ function buildCharts(sample) {
     var marker_sizes = data.sample_values;
     var text_values = data.otu_labels;
     var marker_colors = data.otu_ids;
-
-    // @TODO: Build a Bubble Chart using the sample data
-
-    var bubbleLayout = {
-      margin: { t: 0 },
-      hovermode: "closest",
-      xaxis: { title: "OTU ID" }
-    };
-    var bubbleData = [
-      {
-        x: x_values,
-        y: y_values,
-        text: text_values,
-        mode: "markers",
-        marker: {
-          size: marker_sizes,
-          color: marker_colors,
-          colorscale: "Earth"
-        }
+    
+    var trace1 = {
+      x: x_values,
+      y: y_values,
+      text: text_values,
+      mode: 'markers',
+      marker: {
+        size: marker_sizes,
+        color: marker_colors,
+        color_scale: 'Earth'
       }
-    ];
-
-    Plotly.plot("bubble", bubbleData, bubbleLayout);
-
-
-
+    };
     
+    var bubble = [trace1];
 
-  //   var trace1 = {
-  //     x: x_values,
-  //     y: y_values,
-  //     text: text_values,
-  //     mode: 'markers',
-  //     marker: {
-  //       size: marker_sizes,
-  //       color: marker_colors,
-  //       color_scale: 'Earth'
-  //     }
-  //   };
-    
-  //   var bubble = [trace1];
+    Plotly.plot('bubble', bubble);
 
-  //   // var layout = {
-  //   //   x_axis: {title:"OTU ID"},
-  //   // };
-
-  //   Plotly.plot('bubble', bubble);
-
-  // });
+  
 
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values, otu_ids, and labels (10 each).
-    // d3
-    // .json(url)
-    // .then(function(data) {  
+    
         var pie_values = data.sample_values.slice(0,10);
         var pie_labels = data.otu_ids.slice(0,10);
         var pie_hover = data.otu_labels.slice(0,10);
